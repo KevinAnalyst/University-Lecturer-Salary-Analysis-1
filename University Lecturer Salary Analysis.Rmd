@@ -1,0 +1,106 @@
+---
+title: "University Lecturer Salary Analysis"
+output: html_notebook
+---
+---
+The analysis was conducted to answer the following objectives;
+(i)To assess the association between yrs_since_phd, yrs_service and salary.
+(ii) To Find whose rank earn more salary than others.
+(iii) To determine yrs_since_phd, yrs_service on salary.
+---
+```{r Loading the dataset by either copyinf the path or file.choose function}
+dat=read.csv("D:\\DATA\\WorkSalaries.csv") #copy of the dataset
+dat=read.csv(file.choose())
+```
+
+
+```{r Display the first two rows}
+head(dat)
+```
+
+
+```{r Display the last two rows}
+tail(dat,2)
+```
+```{r Checking the variables names}
+names(dat)
+
+```
+```{r Data types in the dataset}
+str(dat)
+
+```
+```{r Viwing number of columns and rows}
+ncol(dat)
+nrow(dat)
+```
+```{r Loading the tidyverse and dplyr for selecting variable}
+library(tidyverse)
+library(dplyr)
+```
+```{r}
+dat1=select(dat,yrs_since_phd,yrs_service,salary)
+head(dat1,2)
+```
+
+```{r}
+plot(dat1,col='darkred')
+```
+
+```{r}
+dat2=as.matrix(dat1)
+cor(dat2)
+```
+```{r}
+heatmap(dat2)
+```
+```{r}
+hist(dat1$yrs_since_phd, xlab = 'since phd in years',main='Histogram representing Years Since obtained phd',col = 'red')
+```
+```{r}
+hist(dat1$yrs_service, xlab = 'service in years',main='Histogram representing service in years',col = 'blue')
+```
+```{r}
+hist(dat1$salary, xlab = 'Salary',main='Histogram representing salary',col = 'purple')
+```
+```{r Loading ggplot2 to use in visualizing}
+library(ggplot2)
+
+```
+
+```{r}
+ggplot(dat,mapping = aes(x=salary,y=rank,fill="red"))+geom_bar(stat = 'identity')+labs(title = "Barplot for Salary",x="salary",y="rank")
+```
+```{r}
+ggplot(dat,mapping = aes(y=salary,x=rank,fill="green"))+geom_bar(stat = 'identity')+labs(title = "Barplot for Salary",y="salary",x="rank")
+```
+```{r}
+t=lm(salary~yrs_since_phd+yrs_service,data = dat)
+```
+
+```{r}
+t
+```
+```{r}
+summary(t)
+```
+```{r}
+anova(t)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
