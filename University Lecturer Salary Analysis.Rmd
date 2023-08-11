@@ -1,6 +1,8 @@
 ---
 title: "University Lecturer Salary Analysis"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 ---
 The analysis was conducted to answer the following objectives;
@@ -9,7 +11,8 @@ The analysis was conducted to answer the following objectives;
 (iii) To determine yrs_since_phd, yrs_service on salary.
 ---
 ```{r Loading the dataset by either copyinf the path or file.choose function}
-dat=read.csv("D:\\DATA\\WorkSalaries.csv") #copy of the dataset
+dat=read.csv("WorkSalaries.csv") #copy of the dataset
+#choosing the file from the local path
 dat=read.csv(file.choose())
 ```
 
